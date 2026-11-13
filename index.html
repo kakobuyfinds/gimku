@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>WheeBuy spreadsheet – varekategorier og købsguide | CAFANS</title>
+  <meta name="description" content="Brug en WheeBuy spreadsheet til at finde sko, tøj og tilbehør. Få en dansk tjekliste til varelinks, mål, QC-billeder og samlet pris før køb.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <meta property="og:title" content="WheeBuy spreadsheet – varekategorier og købsguide">
+  <meta property="og:description" content="Find en varekategori, og tjek produktlink, pasform og fragt til Danmark før køb.">
+  <!-- Søgenoter til redaktøren
+       Bing Danmarks første resultatside kunne ikke verificeres. Supplerende søgning viste
+       kataloger hos GRAILS, sopel.fit, ChinaGrails, WheeBuySheets og USFansYupoo samt
+       købs- og produktguider hos Wheebuys, whee-buy.net, WheeSpreadsheet, FindHaul og ONE-TO-ONE YUPOO.
+       Sekundære søgeord: WheeBuy købsguide, WheeBuy varelinks, WheeBuy størrelsesguide,
+       WheeBuy QC-billeder, WheeBuy fragt til Danmark.
+       Langhalefraser: finde sneakers i en WheeBuy spreadsheet, tjekke varelink til sko,
+       måle indersål i centimeter, sammenligne EU-størrelser på sneakers, læse en størrelsestabel for hoodies,
+       måle brystbredde på en T-shirt, måle ærmelængde på en jakke, måle talje på bukser,
+       sammenligne overdel og underdel i et sæt, finde hovedomkreds til en kasket,
+       vælge størrelse på en sportstrøje, måle længden på et armbånd, tjekke lukning på smykker,
+       læse QC-billeder af sneakers, se syninger på nærbilleder, kontrollere varevariant hos sælgeren,
+       finde et aktivt Weidian-link, sammenligne pakkens vægt og mål, regne fragt om til danske kroner,
+       sammenligne den samlede pris med fragt, kontrollere moms ved levering til Danmark,
+       finde returvilkår før bestilling.
+  -->
+  <style>
+    :root{color-scheme:light;--paper:#f7f1e9;--ink:#25211e;--muted:#5c514a;--line:#d7c7b9;--rust:#812e24;--white:#fffaf4}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--paper);color:var(--ink);font:1rem/1.6 system-ui,sans-serif}
+    .wrap{width:min(70rem,calc(100% - 2rem));margin-inline:auto}
+    a{color:var(--rust);text-underline-offset:.2em}
+    a:focus-visible,summary:focus-visible{outline:3px solid var(--rust);outline-offset:4px}
+    header{background:var(--white);border-bottom:1px solid var(--line)}
+    .mast{min-height:3.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .brand{font-weight:850;letter-spacing:.12em;text-decoration:none}
+    h1,h2,h3,p,figure{margin:0}
+    h1,h2{font-family:Georgia,serif;line-height:1.05;letter-spacing:-.035em}
+    h1{font-size:clamp(2.65rem,7vw,6rem);overflow-wrap:anywhere}
+    h2{font-size:clamp(1.75rem,4vw,3rem)}
+    h3{font-size:1.12rem;line-height:1.3}
+    .hero{display:grid;grid-template-columns:1.2fr 1fr;align-items:center;gap:clamp(1.25rem,5vw,4rem);padding-block:clamp(1.5rem,5vw,4rem)}
+    .hero p{max-width:43ch;margin-top:1rem}
+    .button{display:inline-block;margin-top:1.2rem;padding:.6rem 1rem;background:var(--rust);color:white;border-radius:.3rem;text-decoration:none;font-weight:700}
+    img{display:block;width:100%;height:auto}
+    .hero img{aspect-ratio:4/3;object-fit:contain;background:#fff}
+    figcaption{padding:.5rem .7rem;color:var(--muted);font-size:.87rem}
+    .catalog,.guides,.faq{padding-block:1.75rem;border-top:1px solid var(--line)}
+    .categories,.gallery{list-style:none;padding:0;margin:1rem 0 0;display:grid;gap:.6rem}
+    .categories{grid-template-columns:repeat(5,1fr)}
+    .categories a{display:flex;align-items:center;min-height:3rem;padding:.55rem .75rem;background:var(--white);border:1px solid var(--line);border-radius:.3rem;font-weight:650}
+    .categories a:hover{background:#f0ded2}
+    .gallery{grid-template-columns:repeat(4,1fr);gap:.75rem;margin-block:0 1.75rem}
+    .gallery figure,.hero figure{background:var(--white);border:1px solid var(--line);overflow:hidden;border-radius:.35rem}
+    .gallery img{aspect-ratio:1;object-fit:contain;background:#fff}
+    .articles{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem 2rem;margin-top:1rem}
+    article{padding-top:.8rem;border-top:2px solid var(--line)}
+    article p{margin-top:.5rem}
+    details{border-bottom:1px solid var(--line)}
+    .faq h2{margin-bottom:1rem}
+    summary{padding:.75rem 0;cursor:pointer;font-weight:700}
+    details p{padding-bottom:.85rem;max-width:68ch}
+    footer{padding:1rem 0 2rem;color:var(--muted)}
+    @media(max-width:48rem){.hero{grid-template-columns:1fr}.hero img{max-height:19rem}.categories{grid-template-columns:repeat(2,1fr)}.gallery{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:36rem){.articles{grid-template-columns:1fr}}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "inLanguage": "da",
+    "name": "Spørgsmål om WheeBuy spreadsheet",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Hvad er en WheeBuy spreadsheet?",
+        "acceptedAnswer": {"@type": "Answer", "text": "En WheeBuy spreadsheet er en oversigt over varefund og produktlinks. Brug den til at finde kandidater, og bekræft variant, lagerstatus og købsbetingelser på den aktuelle produktside."}
+      },
+      {
+        "@type": "Question",
+        "name": "Hvordan vælger jeg størrelse på sko og tøj?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Sammenlign indersålsmål eller tøjets mål i centimeter med et par sko eller et stykke tøj, der passer dig. Tjek, hvordan sælgeren har målt, før du vælger størrelse."}
+      },
+      {
+        "@type": "Question",
+        "name": "Hvad kan QC-billeder vise?",
+        "acceptedAnswer": {"@type": "Answer", "text": "QC-billeder kan vise syninger, farve, mærkning og synlige fejl på varen. Brug dem sammen med mål og oplysninger om sælgeren. Ægthed kræver særskilt dokumentation."}
+      },
+      {
+        "@type": "Question",
+        "name": "Hvordan sammenligner jeg fragt til Danmark?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Sammenlign tilbud for samme destination og pakkestørrelse. Se, om fragten beregnes efter faktisk vægt eller volumenvægt, og læg varepris, fragt og eventuelle gebyrer sammen i danske kroner."}
+      }
+    ]
+  }
+  </script>
+<link rel="canonical" href="https://kakobuyfinds.github.io/gimku/">
+</head>
+<body>
+  <header>
+    <div class="wrap mast">
+      <a class="brand" href="https://www.cafans.com">CAFANS</a>
+      <span>Dansk købsguide</span>
+    </div>
+  </header>
+  <main class="wrap">
+    <section class="hero" aria-labelledby="page-title">
+      <div>
+        <h1 id="page-title">WheeBuy spreadsheet</h1>
+        <p>Find en kategori for sko, tøj eller tilbehør. Brug guiden til at kontrollere varelink, pasform og leveringspris, før du bestiller.</p>
+        <a class="button" href="https://www.cafans.com">Åbn CAFANS-kataloget</a>
+      </div>
+      <figure>
+        <img src="https://www.ego-sport.pl/hpeciai/a63432ceca39f4d6581781f14515d795/pol_pl_Nike-buty-meskie-Air-Force-1-07-CW2288-111-biale-14786_1.webp" width="640" height="480" alt="Hvid Nike Air Force 1 ’07 med perforeret tåparti" fetchpriority="high" loading="eager">
+        <figcaption>Modelreference · Nike Air Force 1 ’07</figcaption>
+      </figure>
+    </section>
+
+    <nav class="catalog" aria-labelledby="categories-title">
+      <h2 id="categories-title">Find din varekategori</h2>
+      <ul class="categories">
+        <li><a href="https://cafans.com/category-911-Shoes.html">Sko og sneakers</a></li>
+        <li><a href="https://cafans.com/category-912-Hoodies%2FSweaters.html">Hættetrøjer og sweatere</a></li>
+        <li><a href="https://cafans.com/category-913-T-Shirts.html">T-shirts</a></li>
+        <li><a href="https://cafans.com/category-914-Jackets.html">Jakker</a></li>
+        <li><a href="https://cafans.com/category-915-Pants%2FShorts.html">Bukser og shorts</a></li>
+        <li><a href="https://cafans.com/category-916-Headwear.html">Kasketter og hatte</a></li>
+        <li><a href="https://cafans.com/category-917-Sets.html">Tøjsæt</a></li>
+        <li><a href="https://cafans.com/category-918-underwear%2Funderpants.html">Undertøj</a></li>
+        <li><a href="https://cafans.com/category-919-Jersey.html">Sportstrøjer</a></li>
+        <li><a href="https://cafans.com/category-920-Accessories.html">Tilbehør</a></li>
+      </ul>
+    </nav>
+
+    <ul class="gallery" aria-label="Modelreferencer for tøj, hovedbeklædning og smykker">
+      <li><figure>
+        <img src="https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-monogram-short-sleeved-crewneck--HUN18WAUR148_PM2_Front%20view.png?hei=360&amp;wid=360" width="360" height="360" alt="Lys Louis Vuitton T-shirt med monogrammønster" loading="lazy" decoding="async">
+        <figcaption>Louis Vuitton · Monogram-T-shirt</figcaption>
+      </figure></li>
+      <li><figure>
+        <img src="https://media.gucci.com/style/HEXFBFBFB_South_0_160_640x640/1751298339/838745_3HBC4_2600_001_100_0000_Light.jpg" width="640" height="640" alt="Beige Gucci-kasket med GG-mønster og mørk skygge" loading="lazy" decoding="async">
+        <figcaption>Gucci · GG-kasket</figcaption>
+      </figure></li>
+      <li><figure>
+        <img src="https://assets.christiandior.com/is/image/diorprod/B1446HOMMTD000_E06?%24default_GHC%24=&amp;bfc=on&amp;crop=424%2C159%2C1122%2C1281&amp;qlt=85&amp;wid=360" width="360" height="411" alt="Sølvfarvet Dior-kædearmbånd med CD-led" loading="lazy" decoding="async">
+        <figcaption>Dior · CD Icon</figcaption>
+      </figure></li>
+      <li><figure>
+        <img src="https://assets.hermes.com/is/image/hermesproduct/bracelet-clic-h--700001F%204P-front-1-300-0-1000-1000_b.jpg?wid=360" width="360" height="360" alt="Hermès Clic H-armring med guldfarvet H-lås" loading="lazy" decoding="async">
+        <figcaption>Hermès · Clic H</figcaption>
+      </figure></li>
+    </ul>
+
+    <section class="guides" aria-labelledby="guides-title">
+      <h2 id="guides-title">Fra varefund til bestilling</h2>
+      <div class="articles">
+        <article>
+          <h3>Tjek varelinket og den valgte variant</h3>
+          <p>Åbn den oprindelige produktside, hvis din oversigt har et kildelink fra eksempelvis Weidian, Taobao eller 1688. Kontrollér model, farve og variant. Hvis linket er udløbet, så søg på modelnavn eller varenummer og sammenlign billeder og mål med den nye annonce.</p>
+        </article>
+        <article>
+          <h3>Brug mål fra noget, du allerede ejer</h3>
+          <p>Mål indersålen i en sneaker, du går godt i. Ved en hoodie eller T-shirt kan du lægge tøjet fladt og måle brystbredde og længde. Tjek også ærmelængde på jakker og taljemål på bukser. Ved et sæt bør du kontrollere overdel og underdel hver for sig.</p>
+        </article>
+        <article>
+          <h3>Læs QC-billederne i den rigtige rækkefølge</h3>
+          <p>Bekræft først farve og variant på oversigtsbilledet. Kig derefter efter skæve syninger, synlige mærker eller forskel på højre og venstre sko. Ved en kasket er hovedomkreds og justering værd at tjekke. Ved et armbånd kan et nærbillede vise låsen, mens længden bør stå i varebeskrivelsen.</p>
+        </article>
+        <article>
+          <h3>Sammenlign samlet pris i danske kroner</h3>
+          <p>Notér varepris, fragt og eventuelle gebyrer i samme valuta. Brug den forventede pakkes vægt og mål, når du sammenligner fragt. Tjek, hvordan moms håndteres ved levering til Danmark, og læs returvilkårene, før du betaler.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="faq" aria-labelledby="faq-title">
+      <h2 id="faq-title">Spørgsmål om WheeBuy spreadsheet</h2>
+      <details>
+        <summary>Hvad er en WheeBuy spreadsheet?</summary>
+        <p>En WheeBuy spreadsheet er en oversigt over varefund og produktlinks. Brug den til at finde kandidater, og bekræft variant, lagerstatus og købsbetingelser på den aktuelle produktside.</p>
+      </details>
+      <details>
+        <summary>Hvordan vælger jeg størrelse på sko og tøj?</summary>
+        <p>Sammenlign indersålsmål eller tøjets mål i centimeter med et par sko eller et stykke tøj, der passer dig. Tjek, hvordan sælgeren har målt, før du vælger størrelse.</p>
+      </details>
+      <details>
+        <summary>Hvad kan QC-billeder vise?</summary>
+        <p>QC-billeder kan vise syninger, farve, mærkning og synlige fejl på varen. Brug dem sammen med mål og oplysninger om sælgeren. Ægthed kræver særskilt dokumentation.</p>
+      </details>
+      <details>
+        <summary>Hvordan sammenligner jeg fragt til Danmark?</summary>
+        <p>Sammenlign tilbud for samme destination og pakkestørrelse. Se, om fragten beregnes efter faktisk vægt eller volumenvægt, og læg varepris, fragt og eventuelle gebyrer sammen i danske kroner.</p>
+      </details>
+    </section>
+  </main>
+  <footer class="wrap">
+    <p>Uafhængig CAFANS-guide. Billederne viser modelreferencer.</p>
+  </footer>
+</body>
+</html>
